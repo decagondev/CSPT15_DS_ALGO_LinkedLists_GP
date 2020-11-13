@@ -17,4 +17,23 @@ class LinkedListNode():
 
 def reverse(head_of_list):
     # Your code here
-    pass
+    # create a ref to the head of list (our current node)
+    current_node = head_of_list
+    # create a pointer for the prev (set to null, None, nullptr)
+    prev = None
+    # create a pointer for a next (set to null, None, nullptr)
+    next = None
+
+    # while the current node exists (traverse the linked list while the current node is not none) 
+    while current_node:
+        # my next pointer gets set to the current nodes `next`
+        next = current_node.next
+        # my current nodes next gets set to the prev
+        current_node.next = prev
+        # set my prev pointer to my current node
+        prev = current_node
+        # set ref of current to next (increment to the next node in the chain)
+        current_node = next
+
+    # return the node that the prev pointer is currently pointing to
+    return prev
