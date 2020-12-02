@@ -44,3 +44,29 @@ The initial list, with reversed groups of k elements.
 #     self.next = None
 #
 def reverseNodesInKGroups(l, k):
+    if l == None: 
+        return None
+    
+    firstNode = lastNode = l;
+    for i in range(0, k): 
+        if lastNode == None:
+            return l
+        lastNode = lastNode.next;
+    newHead = reverseNodes(firstNode, lastNode)
+    firstNode.next = reverseNodesInKGroups(lastNode, k)
+    return newHead
+           
+           
+                      
+
+def reverseNodes(firstNode, lastNode):
+    previousNode = None
+    currentNode = nextNode = firstNode
+    
+    while (currentNode != lastNode):
+        nextNode = currentNode.next
+        currentNode.next = previousNode
+        previousNode = currentNode
+        currentNode = nextNode 
+    
+    return previousNode

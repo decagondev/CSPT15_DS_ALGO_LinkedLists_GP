@@ -7,6 +7,9 @@ C - Costly append operations (due to the doubling append)
 D - Costly search operations 
 
 
+answer is :
 
+
+Costly search operations 
 
 """

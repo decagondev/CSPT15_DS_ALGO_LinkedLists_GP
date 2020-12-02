@@ -40,10 +40,41 @@ Return l after inserting value into it, with the original sorting preserved.
 
 """
 
-# Singly-linked lists are already defined with this interface:
+ Singly-linked lists are already defined with this interface:
 # class ListNode(object):
 #   def __init__(self, x):
 #     self.value = x
 #     self.next = None
 #
 def insertValueIntoSortedLinkedList(l, value):
+    output = []
+    currentNode = l
+    inserted = False
+    previousValue = None
+    
+    while currentNode is not None:
+        if inserted == True:
+            output.append(currentNode.value)
+        else:
+            if previousValue == None and currentNode.value > value:
+                output.append(value)
+                output.append(currentNode.value)
+                inserted = True
+            elif previousValue != None and (currentNode.value > value and previousValue < value):
+                output.append(value)
+                output.append(currentNode.value)
+                inserted = True
+            else:
+                output.append(currentNode.value)
+        
+        if currentNode.next == None:
+            if inserted == False:
+                output.append(value)
+            currentNode = None
+        else:
+            previousValue = currentNode.value
+            currentNode = currentNode.next
+        
+    return output if len(output) != 0 else [value]
+                
+

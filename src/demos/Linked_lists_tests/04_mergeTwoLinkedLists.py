@@ -42,3 +42,17 @@ A list that contains elements from both l1 and l2, sorted in non-decreasing orde
 #     self.next = None
 #
 def mergeTwoLinkedLists(l1, l2):
+    currentNode = l1 if l1 != None else l2
+    listNumber = 1 if l1 != None else 2
+    output = []
+    while currentNode is not None:
+        output.append(currentNode.value)
+        if currentNode.next == None:
+            if listNumber == 1:
+                listNumber = 2
+                currentNode = l2
+            else:
+                currentNode = None
+        else:
+            currentNode = currentNode.next
+    return sorted(output)
